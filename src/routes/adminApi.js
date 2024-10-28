@@ -50,7 +50,7 @@ router.put('/admin/:id', async(req, res) => {
     const updateProduct = req.body;
     try {
         await pool.query('UPDATE products SET ? WHERE product_id = ?', [updateProduct, id]);
-        res.json({ message: '更新成功'});
+        res.json({ message: '更新成功', id: id, ...updateProduct});
     } catch (error) {
         res.status(400).json({ message: '更新失敗'});
     }

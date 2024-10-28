@@ -16,7 +16,7 @@ const createAdminTable = async () => {
     `
 
     `
-        CREATE TABLE products (
+        CREATE TABLE IF NOT EXISTS products (
             product_id int(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
             product_name varchar(255) NOT NULL,
             main_type_id int(50) NOT NULL,
@@ -26,7 +26,7 @@ const createAdminTable = async () => {
             scent_profile text NOT NULL,
             summary varchar(150) NOT NULL,
             img_url varchar(500) ,
-            product_code INT(50) NOT NULL,
+            product_code varchar(50) NOT NULL,
             capacity INT(11) NOT NULL,
             price INT(10) NOT NULL,
             quantity INT(10) NOT NULL
@@ -34,7 +34,7 @@ const createAdminTable = async () => {
     `
 
     `
-        INSERT INTO products (product_id, product_name, main_type_id, sort_in_type, main_type_name, product_intro, scent_profile, summary, img_url, product_code, capacity, price, quantity ) VALUES
+        INSERT INTO IF NOT EXISTS products (product_id, product_name, main_type_id, sort_in_type, main_type_name, product_intro, scent_profile, summary, img_url, product_code, capacity, price, quantity ) VALUES
             (1, '暮光之影香水', 2, 1, 'woody_type', '「暮光之影」香水蘊含沉靜的琥珀和木質調，宛如暮色中的森林，帶來一種深邃而神秘的感覺。\r\n這款香水平衡了沉穩與細膩，彷彿捕捉到黃昏時分的靜謐瞬間。無論是日常使用還是夜晚約會，它都能為您增添一抹迷人魅力。', '神秘木質\r\n以琥珀與檀香為基調，伴隨淡淡的香草香氣，營造出獨特的溫暖感受。', '這款香水以深沉著稱，讓您在夜晚散發出神秘的魅力。', 'https://i.imgur.com/a2R0fUA.jpeg', 1021001, 30, 1000, 25),
             (2, '暮光之影香水', 2, 1, 'woody_type', '「暮光之影」香水蘊含沉靜的琥珀和木質調，宛如暮色中的森林，帶來一種深邃而神秘的感覺。\r\n這款香水平衡了沉穩與細膩，彷彿捕捉到黃昏時分的靜謐瞬間。無論是日常使用還是夜晚約會，它都能為您增添一抹迷人魅力。', '神秘木質\r\n以琥珀與檀香為基調，伴隨淡淡的香草香氣，營造出獨特的溫暖感受。', '這款香水以深沉著稱，讓您在夜晚散發出神秘的魅力。', 'https://i.imgur.com/a2R0fUA.jpeg', 1022001, 50, 1500, 25),
             (3, '暮光之影香水', 2, 1, 'woody_type', '「暮光之影」香水蘊含沉靜的琥珀和木質調，宛如暮色中的森林，帶來一種深邃而神秘的感覺。\r\n這款香水平衡了沉穩與細膩，彷彿捕捉到黃昏時分的靜謐瞬間。無論是日常使用還是夜晚約會，它都能為您增添一抹迷人魅力。', '神秘木質\r\n以琥珀與檀香為基調，伴隨淡淡的香草香氣，營造出獨特的溫暖感受。', '這款香水以深沉著稱，讓您在夜晚散發出神秘的魅力。', 'https://i.imgur.com/a2R0fUA.jpeg', 1023001, 100, 3000, 25),
