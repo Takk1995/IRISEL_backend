@@ -1,9 +1,9 @@
 const express = require('express');
-const multer = require('multer');
-const path = require('path');
+// const multer = require('multer');
+// const path = require('path');
 const pool = require('../config/db');
 const router = express.Router();
-const upload = multer({ dest: 'uploads/'})
+// const upload = multer({ dest: 'uploads/'});
 
 router.post('/login', async(req, res) => {
     const {username, password} = req.body;
