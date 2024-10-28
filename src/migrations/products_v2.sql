@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2024-10-28 07:52:48
+-- 產生時間： 2024-10-28 08:07:27
 -- 伺服器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.2.12
 
@@ -31,7 +31,7 @@ CREATE TABLE `products` (
   `product_id` int(10) UNSIGNED NOT NULL,
   `product_name` varchar(255) NOT NULL,
   `main_type_id` int(50) NOT NULL,
-  `sort_in_type` int(50) DEFAULT NULL,
+  `sort_in_type` int(50) NOT NULL,
   `main_type_name` varchar(50) NOT NULL,
   `main_type_Chinese` text NOT NULL,
   `product_intro` text NOT NULL,
