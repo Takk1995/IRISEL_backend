@@ -87,3 +87,25 @@ app.get('/api/random-recommend-products', async (req, res) => {
         return res.status(500).json({ error: err.sqlMessage });
     }
 });
+
+// 用於獲取商品目錄的路由
+app.get('/api/catalog', async (req, res) => {
+    const mainTypeId = req.query.main_type_id; // 獲取查詢參數中的 main_type_id
+    console.log('獲取 main_type_id:', mainTypeId); // 打印正在獲取的 main_type_id
+
+    try {
+        // 查詢商品資料
+        const [productResults] = await conn.query('SELECT * FROM products WHERE main_type_id = ?', [mainTypeId]);
+
+        // 如果查詢結果為空，回傳 404
+        if (productResults.length === 0) {
+            return res.status(404).json({ message: '未找到相關商品' });
+        }
+
+        console.log('獲取到的商品資料:', productResults); // 打印查詢結果
+        res.json(productResults); // 返回合併的查詢結果
+    } catch (err) {
+        console.log('百變怪:無法獲取商品資料');
+        return res.status(500).json({ error: err.sqlMessage });
+    }
+});
