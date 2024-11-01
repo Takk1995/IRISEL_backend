@@ -5,7 +5,7 @@ const router = express.Router();
 // 獲取特定商品資料
 router.get('/product/:code', async (req, res) => {
     const productCode = req.params.code;
-    console.log('正在獲取 product_code:', productCode);
+    // console.log('正在獲取 product_code:', productCode);
 
     try {
         const [productResults] = await pool.query('SELECT * FROM products WHERE product_code = ?', [productCode]);
@@ -14,10 +14,10 @@ router.get('/product/:code', async (req, res) => {
             return res.status(404).json({ message: '商品未找到' });
         }
 
-        console.log('獲取到的商品資料:', productResults);
+        // console.log('獲取到的商品資料:', productResults);
         res.json(productResults);
     } catch (err) {
-        console.log('無法獲取特定商品資料');
+        // console.log('無法獲取特定商品資料');
         return res.status(500).json({ error: err.sqlMessage });
     }
 });
@@ -37,7 +37,7 @@ router.get('/random-recommend-products', async (req, res) => {
 
         res.json(productResults);
     } catch (err) {
-        console.log('無法隨機獲取多款商品資料');
+        // console.log('無法隨機獲取多款商品資料');
         return res.status(500).json({ error: err.sqlMessage });
     }
 });
@@ -45,7 +45,7 @@ router.get('/random-recommend-products', async (req, res) => {
 // 用於獲取商品目錄的路由
 router.get('/catalog', async (req, res) => {
     const mainTypeId = req.query.main_type_id; // 獲取查詢參數中的 main_type_id
-    console.log('獲取 main_type_id:', mainTypeId); // 打印正在獲取的 main_type_id
+    // console.log('獲取 main_type_id:', mainTypeId); // 打印正在獲取的 main_type_id
 
     try {
         // 查詢商品資料
@@ -56,10 +56,10 @@ router.get('/catalog', async (req, res) => {
             return res.status(404).json({ message: '未找到相關商品' });
         }
 
-        console.log('獲取到的商品資料:', productResults); // 打印查詢結果
+        // console.log('獲取到的商品資料:', productResults); // 打印查詢結果
         res.json(productResults); // 返回合併的查詢結果
     } catch (err) {
-        console.log('百變怪:無法獲取商品資料');
+        // console.log('百變怪:無法獲取商品資料');
         return res.status(500).json({ error: err.sqlMessage });
     }
 });

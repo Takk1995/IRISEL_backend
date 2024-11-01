@@ -42,4 +42,44 @@ router.get('/updateCapacity', async(req, res) => {
     }
 })
 
+router.post('/orders', async(req, res) => {
+    const {guestUser, guestCart, productPackage, ship, total} = req.body
+    
+    if (!guestUser || !guestCart || !productPackage || !ship || !total) {
+        return res.status(400).json({ error: 'error'})
+    }
+
+    const guestId = guestUser.guest_id
+    const guestEmail = guestUser.guest_email
+    const productDetails = guestCart.map(item => ({
+        product_id: item.product_id,
+        cart_qty: item.cart_qty
+    }))
+
+    const createdAt = new Date().toISOString()
+
+    const insertOrderQuery = `
+        INSERT INTO orders (guest_id, guest_email, total, product_details, ship, package, created_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    `
+
+    try {
+        const [result] = await pool.query(insertOrderQuery, [
+            guestId,
+            guestEmail,
+            total,
+            JSON.stringify(productDetails),
+            JSON.stringify(ship),
+            productPackage,
+            createdAt
+        ])
+        
+        const order_id = result.insertId
+
+        res.status(200).json({order_id})
+    } catch (error) {
+        res.status(400).json({error: 'error'})
+    }
+})
+
 module.exports = router;
